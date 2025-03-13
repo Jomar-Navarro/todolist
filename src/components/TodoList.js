@@ -1,3 +1,7 @@
 export default function TodoList() {
-	return <></>;
+	return (
+		<>
+			<h1>Todo List</h1>
+		</>
+	);
 }
