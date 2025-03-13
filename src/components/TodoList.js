@@ -1,3 +1,5 @@
+import DaySelector from "./DaySelector";
+
 export default function TodoList() {
 	const date = new Date();
 	const month = date.toLocaleString("default", { month: "long" });
@@ -15,6 +17,8 @@ export default function TodoList() {
 					type="text"
 					placeholder="Add a new task"
 				/>
+
+				<DaySelector />
 			</div>
 		</>
 	);
