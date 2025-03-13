@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import DatePicker from "react-datepicker";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-import "react-datepicker/dist/react-datepicker.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 
 const generateDays = (startDate) => {
 	return Array.from({ length: 7 }, (_, i) => {
@@ -18,6 +18,18 @@ const generateDays = (startDate) => {
 		};
 	});
 };
+
+const CustomInput = forwardRef(({ value, onClick }, ref) => (
+	<button
+		className="flex items-center justify-center w-full h-16 p-2 rounded-lg shadow-md bg-gray-900 text-white"
+		onClick={onClick}
+		ref={ref}
+	>
+		<span className="text-sm font-bold">
+			<FontAwesomeIcon icon={faCalendarDays} />
+		</span>
+	</button>
+));
 
 export default function DaySelector({ selectedDay, setSelectedDay }) {
 	const [startDate, setStartDate] = useState(new Date());
@@ -42,17 +54,6 @@ export default function DaySelector({ selectedDay, setSelectedDay }) {
 					},
 				}}
 			>
-				<SwiperSlide>
-					<DatePicker
-						selected={startDate}
-						onChange={handleDateChange}
-						customInput={
-							<button className="flex items-center justify-center w-full h-16 p-2 rounded-lg shadow-md bg-gray-900 text-white">
-								<span className="text-sm font-bold">Calendario</span>
-							</button>
-						}
-					/>
-				</SwiperSlide>
 				{days.map((day, index) => (
 					<SwiperSlide key={index}>
 						<button
@@ -61,6 +62,7 @@ export default function DaySelector({ selectedDay, setSelectedDay }) {
 									? "bg-blue-500 text-white"
 									: "bg-gray-900"
 							}`}
+							onClick={() => setSelectedDay(day.name)}
 						>
 							<span className="text-sm font-bold">{day.name}</span>
 							<span className="text-lg font-semibold">{day.number}</span>
