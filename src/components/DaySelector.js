@@ -1,4 +1,12 @@
+"use client";
+
 import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
 
 const days = Array.from({ length: 7 }, (_, i) => {
 	const date = new Date();
@@ -11,18 +19,32 @@ const days = Array.from({ length: 7 }, (_, i) => {
 
 export default function DaySelector({ selectedDay, setSelectedDay }) {
 	return (
-		<div className="flex flex-wrap justify-between gap-2 mb-4 sm:flex-nowrap">
+		<Swiper
+			spaceBetween={10}
+			slidesPerView={4}
+			breakpoints={{
+				640: {
+					slidesPerView: 5,
+				},
+				768: {
+					slidesPerView: 7,
+				},
+			}}
+		>
 			{days.map((day, index) => (
-				<button
-					key={index}
-					className={`flex flex-col items-center w-12 h-16 p-2 rounded-lg shadow-md ${
-						selectedDay === day.name ? "bg-blue-500 text-white" : "bg-gray-900"
-					} sm:w-16 sm:h-20`}
-				>
-					<span className="text-sm font-bold sm:text-base">{day.name}</span>
-					<span className="text-lg font-semibold sm:text-xl">{day.number}</span>
-				</button>
+				<SwiperSlide key={index}>
+					<button
+						className={`flex flex-col items-center w-full h-16 p-2 rounded-lg shadow-md ${
+							selectedDay === day.name
+								? "bg-blue-500 text-white"
+								: "bg-gray-900"
+						}`}
+					>
+						<span className="text-sm font-bold">{day.name}</span>
+						<span className="text-lg font-semibold">{day.number}</span>
+					</button>
+				</SwiperSlide>
 			))}
-		</div>
+		</Swiper>
 	);
 }
