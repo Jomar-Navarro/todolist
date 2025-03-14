@@ -1,10 +1,14 @@
 "use client";
 import React, { useState, forwardRef } from "react";
+import DaySelector from "./DaySelector";
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import DaySelector from "./DaySelector";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+
+import "../styles/Calendar.module.scss";
 
 const CustomInput = forwardRef(({ value, onClick }, ref) => (
 	<button
