@@ -4,13 +4,18 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import DaySelector from "./DaySelector";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+
 const CustomInput = forwardRef(({ value, onClick }, ref) => (
 	<button
-		className="flex items-center justify-center w-full h-16 p-2 rounded-lg shadow-md bg-gray-900 text-white"
+		className="flex items-center justify-center w-full h-14 p-3 rounded-lg shadow-md bg-gray-900 text-white"
 		onClick={onClick}
 		ref={ref}
 	>
-		<span className="text-sm font-bold">Calendario</span>
+		<span className="text-4xl font-bold">
+			<FontAwesomeIcon icon={faCalendarDays} />
+		</span>
 	</button>
 ));
 
