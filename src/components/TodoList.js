@@ -1,23 +1,8 @@
 "use client";
-import React, { useState, forwardRef } from "react";
+import React, { useState } from "react";
 import DaySelector from "./DaySelector";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import CalendarButton from "./CalendarButton";
 import "../styles/Calendar.scss";
-
-const CustomInput = forwardRef(({ onClick }, ref) => (
-	<button
-		className="flex items-center justify-center w-full h-14 p-3 rounded-lg shadow-md bg-gray-900 text-white"
-		onClick={onClick}
-		ref={ref}
-	>
-		<span className="text-4xl font-bold">
-			<FontAwesomeIcon icon={faCalendarDays} />
-		</span>
-	</button>
-));
 
 export default function TodoList() {
 	const [startDate, setStartDate] = useState(new Date());
@@ -42,14 +27,10 @@ export default function TodoList() {
 				<h1 className="text-3xl font-bold">
 					Today {day} {capitalizedMonth} {year}
 				</h1>
-				<div className="relative z-10">
-					<DatePicker
-						selected={startDate}
-						onChange={handleDateChange}
-						customInput={<CustomInput />}
-						className="z-10"
-					/>
-				</div>
+				<CalendarButton
+					startDate={startDate}
+					handleDateChange={handleDateChange}
+				/>
 			</div>
 			<input
 				className="w-full my-5 p-2.5 border border-gray-300 rounded-3xl"
