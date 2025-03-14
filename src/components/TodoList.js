@@ -52,7 +52,6 @@ export default function TodoList() {
 							onChange={handleDateChange}
 							customInput={<CustomInput />}
 							className="z-10"
-							// popperClassName="react-datepicker-popper" // Aggiungi questa linea
 						/>
 					</div>
 				</div>

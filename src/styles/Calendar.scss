@@ -1,18 +1,40 @@
+.react-datepicker {
+	background-color: #121212;
+	color: #fff;
+}
+
+.react-datepicker__header {
+	background-color: #1e1e1e;
+	border-bottom: none;
+}
+
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+	color: #fff;
+}
+
+.react-datepicker__day,
+.react-datepicker__day-name,
+.react-datepicker__time-name {
+	color: #fff;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+	background-color: #007bff;
+	color: #fff;
+}
+
+.react-datepicker__day--today {
+	border-color: #007bff;
+}
+
+.react-datepicker__day--outside-month {
+	color: #6c757d;
+}
+
 @media (max-width: 640px) {
-	// .react-datepicker {
-	// 	background-color: #121212;
-	// 	color: #fff;
-	// }
-
-	// .react-datepicker__header {
-	// 	background-color: #121212;
-	// 	color: #fff;
-	// }
-
-	// .react-datepicker__day {
-	// 	color: #fff;
-	// }
-
 	.react-datepicker-popper {
 		left: -90px !important; /* Posiziona il calendario a destra */
 	}
