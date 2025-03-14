@@ -20,17 +20,6 @@ export default function TodoList() {
 		startDate.toLocaleDateString("it-IT", { weekday: "short" })
 	);
 
-	const generateDays = (startDate) => {
-		return Array.from({ length: 7 }, (_, i) => {
-			const date = new Date(startDate);
-			date.setDate(date.getDate() + i);
-			return {
-				name: date.toLocaleDateString("it-IT", { weekday: "short" }),
-				number: date.getDate(),
-			};
-		});
-	};
-
 	const handleDateChange = (date) => {
 		setStartDate(date);
 		setSelectedDay(date.toLocaleDateString("it-IT", { weekday: "short" }));
@@ -49,12 +38,14 @@ export default function TodoList() {
 					<h1 className="text-3xl font-bold">
 						Today {day} {capitalizedMonth} {year}
 					</h1>
-					<DatePicker
-						selected={startDate}
-						onChange={handleDateChange}
-						customInput={<CustomInput />}
-						className="z-10"
-					/>
+					<div className="z-10">
+						<DatePicker
+							selected={startDate}
+							onChange={handleDateChange}
+							customInput={<CustomInput />}
+							className="z-10"
+						/>
+					</div>
 				</div>
 				<input
 					className="w-full my-5 p-2.5 border border-gray-300 rounded-3xl"
