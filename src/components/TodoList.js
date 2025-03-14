@@ -1,13 +1,10 @@
 "use client";
 import React, { useState, forwardRef } from "react";
 import DaySelector from "./DaySelector";
-
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
-
 import "../styles/Calendar.scss";
 
 const CustomInput = forwardRef(({ onClick }, ref) => (
@@ -40,33 +37,30 @@ export default function TodoList() {
 	const year = date.getFullYear();
 
 	return (
-		<>
-			<div className="w-full">
-				<div className="flex justify-between items-center">
-					<h1 className="text-3xl font-bold">
-						Today {day} {capitalizedMonth} {year}
-					</h1>
-					<div className="z-10">
-						<DatePicker
-							selected={startDate}
-							onChange={handleDateChange}
-							customInput={<CustomInput />}
-							className="z-10"
-						/>
-					</div>
+		<div className="w-full">
+			<div className="flex justify-between items-center">
+				<h1 className="text-3xl font-bold">
+					Today {day} {capitalizedMonth} {year}
+				</h1>
+				<div className="relative z-10">
+					<DatePicker
+						selected={startDate}
+						onChange={handleDateChange}
+						customInput={<CustomInput />}
+						className="z-10"
+					/>
 				</div>
-				<input
-					className="w-full my-5 p-2.5 border border-gray-300 rounded-3xl"
-					type="text"
-					placeholder="Add a new task"
-				/>
-
-				<DaySelector
-					selectedDay={selectedDay}
-					setSelectedDay={setSelectedDay}
-					startDate={startDate} // Passa startDate come prop
-				/>
 			</div>
-		</>
+			<input
+				className="w-full my-5 p-2.5 border border-gray-300 rounded-3xl"
+				type="text"
+				placeholder="Add a new task"
+			/>
+			<DaySelector
+				selectedDay={selectedDay}
+				setSelectedDay={setSelectedDay}
+				startDate={startDate}
+			/>
+		</div>
 	);
 }
