@@ -1,0 +1,8 @@
+@media (max-width: 640px) {
+	.react-datepicker-popper {
+		left: -90px !important; /* Posiziona il calendario a destra */
+	}
+	.react-datepicker__triangle {
+		left: 202px !important; /* Posiziona il triangolo a destra */
+	}
+}

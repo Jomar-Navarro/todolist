@@ -8,9 +8,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 
-import "../styles/Calendar.module.scss";
+import "../styles/Calendar.scss";
 
-const CustomInput = forwardRef(({ value, onClick }, ref) => (
+const CustomInput = forwardRef(({ onClick }, ref) => (
 	<button
 		className="flex items-center justify-center w-full h-14 p-3 rounded-lg shadow-md bg-gray-900 text-white"
 		onClick={onClick}
@@ -52,6 +52,7 @@ export default function TodoList() {
 							onChange={handleDateChange}
 							customInput={<CustomInput />}
 							className="z-10"
+							// popperClassName="react-datepicker-popper" // Aggiungi questa linea
 						/>
 					</div>
 				</div>
