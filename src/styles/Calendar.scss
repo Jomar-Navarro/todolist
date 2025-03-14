@@ -1,39 +1,61 @@
-.react-datepicker {
-	background-color: #121212;
-	color: #fff;
+/* Definizione delle variabili */
+:root {
+	--background-color: #121212;
+	--header-background-color: #1e1e1e;
+	--text-color: #fff;
+	--selected-background-color: #007bff;
+	--outside-month-color: #6c757d;
 }
 
+/* Stili generali per il calendario */
+.react-datepicker {
+	background-color: var(--background-color);
+	color: var(--text-color);
+}
+
+/* Stili per l'intestazione del calendario */
 .react-datepicker__header {
-	background-color: #1e1e1e;
+	background-color: var(--header-background-color);
 	border-bottom: none;
 }
 
+/* Stili per il mese corrente, l'ora e l'anno */
 .react-datepicker__current-month,
 .react-datepicker-time__header,
 .react-datepicker-year-header {
-	color: #fff;
+	color: var(--text-color);
 }
 
+/* Stili per i giorni, i nomi dei giorni e i nomi delle ore */
 .react-datepicker__day,
 .react-datepicker__day-name,
 .react-datepicker__time-name {
-	color: #fff;
+	color: var(--text-color);
 }
 
+/* Stili per il giorno selezionato e il giorno selezionato tramite tastiera */
 .react-datepicker__day--selected,
 .react-datepicker__day--keyboard-selected {
-	background-color: #007bff;
-	color: #fff;
+	background-color: var(--selected-background-color);
+	color: var(--text-color);
 }
 
+/* Stili per il giorno corrente */
 .react-datepicker__day--today {
-	border-color: #007bff;
+	border-color: var(--selected-background-color);
 }
 
+/* Stili per i giorni fuori dal mese corrente */
 .react-datepicker__day--outside-month {
-	color: #6c757d;
+	color: var(--outside-month-color);
 }
 
+/* Nascondi il triangolo del calendario */
+.react-datepicker__triangle {
+	display: none;
+}
+
+/* Stili per schermi più piccoli */
 @media (max-width: 640px) {
 	.react-datepicker-popper {
 		left: -90px !important; /* Posiziona il calendario a destra */
