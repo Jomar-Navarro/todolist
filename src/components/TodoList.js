@@ -3,7 +3,6 @@ import React, { useState, forwardRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import DaySelector from "./DaySelector";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 
@@ -61,6 +60,7 @@ export default function TodoList() {
 				<DaySelector
 					selectedDay={selectedDay}
 					setSelectedDay={setSelectedDay}
+					startDate={startDate} // Passa startDate come prop
 				/>
 			</div>
 		</>
