@@ -9,7 +9,7 @@ export default function TodoList() {
 	const [selectedDay, setSelectedDay] = useState(
 		startDate.toLocaleDateString("it-IT", { weekday: "short" })
 	);
-	const [tasks, setTasks] = useState([]);
+	const [tasks, setTasks] = useState({});
 	const [newTask, setNewTask] = useState("");
 
 	const handleDateChange = (date) => {
@@ -20,7 +20,11 @@ export default function TodoList() {
 	const handleAddTask = (e) => {
 		e.preventDefault();
 		if (newTask.trim()) {
-			setTasks([...tasks, newTask]);
+			const dateKey = startDate.toLocaleDateString("it-IT");
+			setTasks((prevTasks) => ({
+				...prevTasks,
+				[dateKey]: [...(prevTasks[dateKey] || []), newTask],
+			}));
 			setNewTask("");
 		}
 	};
@@ -30,6 +34,8 @@ export default function TodoList() {
 	const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1);
 	const day = date.getDate();
 	const year = date.getFullYear();
+	const dateKey = startDate.toLocaleDateString("it-IT");
+	const tasksForSelectedDay = tasks[dateKey] || [];
 
 	return (
 		<div className="w-full">
@@ -58,9 +64,9 @@ export default function TodoList() {
 			/>
 
 			<div className="my-10">
-				<h2 className="text-xl font-bold mt-5">Tasks</h2>
+				<h2 className="text-xl font-bold mt-5">Tasks for {dateKey}</h2>
 				<ul>
-					{tasks.map((task, index) => (
+					{tasksForSelectedDay.map((task, index) => (
 						<li
 							key={index}
 							className="my-2 p-2 border border-gray-300 rounded-xl"
