@@ -51,9 +51,7 @@ export default function TodoList() {
 	return (
 		<div className="w-full">
 			<div className="flex justify-between items-center">
-				<h1 className="text-3xl font-bold">
-					Today {formattedDate || "Loading..."}
-				</h1>
+				<h1 className="text-3xl font-bold">{formattedDate || "Loading..."}</h1>
 				<CalendarButton
 					startDate={startDate}
 					handleDateChange={handleDateChange}
