@@ -12,6 +12,7 @@ export default function TodoList() {
 	);
 	const [tasks, setTasks] = useState({});
 	const [newTask, setNewTask] = useState("");
+	const [formattedDate, setFormattedDate] = useState(""); // Stato per evitare mismatch
 
 	const handleDateChange = (date) => {
 		setStartDate(date);
@@ -35,18 +36,23 @@ export default function TodoList() {
 		setSelectedDay(dateKey);
 	}, [startDate]);
 
-	const date = new Date();
-	const month = date.toLocaleString("default", { month: "long" });
-	const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1);
-	const day = date.getDate();
-	const year = date.getFullYear();
+	useEffect(() => {
+		const date = new Date();
+		const month = date.toLocaleString("it-IT", { month: "long" });
+		const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1);
+		const day = date.getDate();
+		const year = date.getFullYear();
+
+		setFormattedDate(`Today ${day} ${capitalizedMonth} ${year}`);
+	}, []);
+
 	const tasksForSelectedDay = tasks[selectedDay] || [];
 
 	return (
 		<div className="w-full">
 			<div className="flex justify-between items-center">
 				<h1 className="text-3xl font-bold">
-					Today {day} {capitalizedMonth} {year}
+					Today {formattedDate || "Loading..."}
 				</h1>
 				<CalendarButton
 					startDate={startDate}
