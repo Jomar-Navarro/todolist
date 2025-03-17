@@ -56,16 +56,20 @@ export default function TodoList() {
 				setSelectedDay={setSelectedDay}
 				startDate={startDate}
 			/>
-			<ul>
-				{tasks.map((task, index) => (
-					<li
-						key={index}
-						className="my-2 p-2 border border-gray-300 rounded-3xl"
-					>
-						{task}
-					</li>
-				))}
-			</ul>
+
+			<div className="my-10">
+				<h2 className="text-xl font-bold mt-5">Tasks</h2>
+				<ul>
+					{tasks.map((task, index) => (
+						<li
+							key={index}
+							className="my-2 p-2 border border-gray-300 rounded-xl"
+						>
+							{task}
+						</li>
+					))}
+				</ul>
+			</div>
 		</div>
 	);
 }
