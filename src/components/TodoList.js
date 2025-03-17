@@ -20,7 +20,7 @@ export default function TodoList() {
 	const handleAddTask = (e) => {
 		e.preventDefault();
 		if (newTask.trim()) {
-			const dateKey = startDate.toLocaleDateString("it-IT");
+			const dateKey = selectedDay;
 			setTasks((prevTasks) => ({
 				...prevTasks,
 				[dateKey]: [...(prevTasks[dateKey] || []), newTask],
@@ -39,7 +39,6 @@ export default function TodoList() {
 	const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1);
 	const day = date.getDate();
 	const year = date.getFullYear();
-	const dateKey = startDate.toLocaleDateString("it-IT");
 	const tasksForSelectedDay = tasks[selectedDay] || [];
 
 	return (
