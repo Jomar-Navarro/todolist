@@ -8,14 +8,14 @@ import "../styles/Calendar.scss";
 export default function TodoList() {
 	const [startDate, setStartDate] = useState(() => new Date());
 	const [selectedDay, setSelectedDay] = useState(() =>
-		new Date().toLocaleDateString("it-IT")
+		new Date().toLocaleDateString("en-EN")
 	);
 	const [tasks, setTasks] = useState({});
 	const [newTask, setNewTask] = useState("");
 
 	const handleDateChange = (date) => {
 		setStartDate(date);
-		setSelectedDay(date.toLocaleDateString("it-IT"));
+		setSelectedDay(date.toLocaleDateString("en-EN"));
 	};
 
 	const handleAddTask = (e) => {
