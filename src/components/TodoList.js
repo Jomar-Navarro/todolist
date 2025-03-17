@@ -74,6 +74,8 @@ export default function TodoList() {
 				startDate={startDate}
 			/>
 
+			{/* TODO: Fare un componente per visualizzare le task e inserire la logica all'interno del componente */}
+			{/* TODO: Creare un componente per eliminare o modificare le task */}
 			<div className="my-10">
 				<h2 className="text-xl font-bold mt-5">Tasks for {selectedDay}</h2>
 				<ul>
