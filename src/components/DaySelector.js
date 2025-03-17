@@ -11,9 +11,9 @@ const generateDays = (startDate) => {
 		const date = new Date(startDate);
 		date.setDate(date.getDate() + i);
 		return {
-			name: date.toLocaleDateString("en-EN", { weekday: "short" }),
+			name: date.toLocaleDateString("it-IT", { weekday: "short" }),
 			number: date.getDate(),
-			fullDate: date.toLocaleDateString("en-EN"),
+			fullDate: date.toLocaleDateString("it-IT"),
 		};
 	});
 };
