@@ -23,7 +23,7 @@ export default function DaySelector({
 	setSelectedDay,
 	startDate,
 }) {
-	const [days, setDays] = useState(generateDays(startDate));
+	const [days, setDays] = useState(() => generateDays(startDate));
 
 	useEffect(() => {
 		setDays(generateDays(startDate));

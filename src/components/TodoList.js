@@ -5,9 +5,9 @@ import CalendarButton from "./CalendarButton";
 import "../styles/Calendar.scss";
 
 export default function TodoList() {
-	const [startDate, setStartDate] = useState(new Date());
-	const [selectedDay, setSelectedDay] = useState(
-		startDate.toLocaleDateString("it-IT")
+	const [startDate, setStartDate] = useState(() => new Date());
+	const [selectedDay, setSelectedDay] = useState(() =>
+		new Date().toLocaleDateString("it-IT")
 	);
 	const [tasks, setTasks] = useState({});
 	const [newTask, setNewTask] = useState("");
