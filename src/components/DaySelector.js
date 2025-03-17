@@ -13,6 +13,7 @@ const generateDays = (startDate) => {
 		return {
 			name: date.toLocaleDateString("it-IT", { weekday: "short" }),
 			number: date.getDate(),
+			fullDate: date.toLocaleDateString("it-IT"),
 		};
 	});
 };
@@ -45,11 +46,11 @@ export default function DaySelector({
 				<SwiperSlide key={index}>
 					<button
 						className={`flex flex-col items-center w-full h-16 p-2 rounded-lg shadow-md ${
-							selectedDay === day.name
+							selectedDay === day.fullDate
 								? "bg-blue-500 text-white"
 								: "bg-gray-900"
 						}`}
-						onClick={() => setSelectedDay(day.name)}
+						onClick={() => setSelectedDay(day.fullDate)}
 					>
 						<span className="text-sm font-bold">{day.name}</span>
 						<span className="text-lg font-semibold">{day.number}</span>

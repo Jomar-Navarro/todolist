@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DaySelector from "./DaySelector";
 import CalendarButton from "./CalendarButton";
 import "../styles/Calendar.scss";
@@ -7,14 +7,14 @@ import "../styles/Calendar.scss";
 export default function TodoList() {
 	const [startDate, setStartDate] = useState(new Date());
 	const [selectedDay, setSelectedDay] = useState(
-		startDate.toLocaleDateString("it-IT", { weekday: "short" })
+		startDate.toLocaleDateString("it-IT")
 	);
 	const [tasks, setTasks] = useState({});
 	const [newTask, setNewTask] = useState("");
 
 	const handleDateChange = (date) => {
 		setStartDate(date);
-		setSelectedDay(date.toLocaleDateString("it-IT", { weekday: "short" }));
+		setSelectedDay(date.toLocaleDateString("it-IT"));
 	};
 
 	const handleAddTask = (e) => {
@@ -29,13 +29,18 @@ export default function TodoList() {
 		}
 	};
 
+	useEffect(() => {
+		const dateKey = startDate.toLocaleDateString("it-IT");
+		setSelectedDay(dateKey);
+	}, [startDate]);
+
 	const date = new Date();
 	const month = date.toLocaleString("default", { month: "long" });
 	const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1);
 	const day = date.getDate();
 	const year = date.getFullYear();
 	const dateKey = startDate.toLocaleDateString("it-IT");
-	const tasksForSelectedDay = tasks[dateKey] || [];
+	const tasksForSelectedDay = tasks[selectedDay] || [];
 
 	return (
 		<div className="w-full">
@@ -64,7 +69,7 @@ export default function TodoList() {
 			/>
 
 			<div className="my-10">
-				<h2 className="text-xl font-bold mt-5">Tasks for {dateKey}</h2>
+				<h2 className="text-xl font-bold mt-5">Tasks for {selectedDay}</h2>
 				<ul>
 					{tasksForSelectedDay.map((task, index) => (
 						<li
