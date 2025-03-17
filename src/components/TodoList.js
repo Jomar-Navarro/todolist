@@ -9,10 +9,20 @@ export default function TodoList() {
 	const [selectedDay, setSelectedDay] = useState(
 		startDate.toLocaleDateString("it-IT", { weekday: "short" })
 	);
+	const [tasks, setTasks] = useState([]);
+	const [newTask, setNewTask] = useState("");
 
 	const handleDateChange = (date) => {
 		setStartDate(date);
 		setSelectedDay(date.toLocaleDateString("it-IT", { weekday: "short" }));
+	};
+
+	const handleAddTask = (e) => {
+		e.preventDefault();
+		if (newTask.trim()) {
+			setTasks([...tasks, newTask]);
+			setNewTask("");
+		}
 	};
 
 	const date = new Date();
@@ -32,16 +42,30 @@ export default function TodoList() {
 					handleDateChange={handleDateChange}
 				/>
 			</div>
-			<input
-				className="w-full my-5 p-2.5 border border-gray-300 rounded-3xl"
-				type="text"
-				placeholder="Add a new task"
-			/>
+			<form onSubmit={handleAddTask}>
+				<input
+					className="w-full my-5 p-2.5 border border-gray-300 rounded-3xl"
+					type="text"
+					placeholder="Add a new task"
+					value={newTask}
+					onChange={(e) => setNewTask(e.target.value)}
+				/>
+			</form>
 			<DaySelector
 				selectedDay={selectedDay}
 				setSelectedDay={setSelectedDay}
 				startDate={startDate}
 			/>
+			<ul>
+				{tasks.map((task, index) => (
+					<li
+						key={index}
+						className="my-2 p-2 border border-gray-300 rounded-3xl"
+					>
+						{task}
+					</li>
+				))}
+			</ul>
 		</div>
 	);
 }
