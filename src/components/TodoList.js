@@ -2,7 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import DaySelector from "./DaySelector";
-import CalendarButton from "./CalendarButton";
+import Calendar from "./CalendarButton";
+import TaskList from "./TaskList";
+import InputForm from "./InputForm";
 import "../styles/Calendar.scss";
 
 export default function TodoList() {
@@ -12,7 +14,7 @@ export default function TodoList() {
 	);
 	const [tasks, setTasks] = useState({});
 	const [newTask, setNewTask] = useState("");
-	const [formattedDate, setFormattedDate] = useState(""); // Stato per evitare mismatch
+	const [formattedDate, setFormattedDate] = useState("");
 
 	const handleDateChange = (date) => {
 		setStartDate(date);
@@ -46,47 +48,23 @@ export default function TodoList() {
 		setFormattedDate(`Today ${day} ${capitalizedMonth} ${year}`);
 	}, []);
 
-	const tasksForSelectedDay = tasks[selectedDay] || [];
-
 	return (
 		<div className="w-full">
 			<div className="flex justify-between items-center">
 				<h1 className="text-3xl font-bold">{formattedDate || "Loading..."}</h1>
-				<CalendarButton
-					startDate={startDate}
-					handleDateChange={handleDateChange}
-				/>
+				<Calendar startDate={startDate} handleDateChange={handleDateChange} />
 			</div>
-			<form onSubmit={handleAddTask}>
-				<input
-					className="w-full my-5 p-2.5 border border-gray-300 rounded-3xl"
-					type="text"
-					placeholder="Add a new task"
-					value={newTask}
-					onChange={(e) => setNewTask(e.target.value)}
-				/>
-			</form>
+			<InputForm
+				newTask={newTask}
+				setNewTask={setNewTask}
+				handleAddTask={handleAddTask}
+			/>
 			<DaySelector
 				selectedDay={selectedDay}
 				setSelectedDay={setSelectedDay}
 				startDate={startDate}
 			/>
-
-			{/* TODO: Fare un componente per visualizzare le task e inserire la logica all'interno del componente */}
-			{/* TODO: Creare un componente per eliminare o modificare le task */}
-			<div className="my-10">
-				<h2 className="text-xl font-bold mt-5">Tasks for {selectedDay}</h2>
-				<ul>
-					{tasksForSelectedDay.map((task, index) => (
-						<li
-							key={index}
-							className="my-2 p-2 border border-gray-300 rounded-xl"
-						>
-							{task}
-						</li>
-					))}
-				</ul>
-			</div>
+			<TaskList tasks={tasks} selectedDay={selectedDay} />
 		</div>
 	);
 }
