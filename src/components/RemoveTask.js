@@ -1,5 +1,8 @@
 import React from "react";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+
 export default function RemoveTask({
 	tasks,
 	setTasks,
@@ -28,10 +31,10 @@ export default function RemoveTask({
 
 	return (
 		<button
-			className="ml-2 px-3 py-1 text-sm text-white bg-red-500 rounded-lg hover:bg-red-600"
+			className="px-2.5 py-1 text-lg text-white bg-red-500 rounded-lg hover:bg-red-600"
 			onClick={handleRemoveTask}
 		>
-			Remove
+			<FontAwesomeIcon icon={faTrashCan} />
 		</button>
 	);
 }
