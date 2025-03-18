@@ -1,6 +1,7 @@
 import React from "react";
+import RemoveTask from "./RemoveTask";
 
-export default function TaskList({ tasks, selectedDay }) {
+export default function TaskList({ tasks, setTasks, selectedDay }) {
 	const tasksForSelectedDay = tasks[selectedDay] || [];
 
 	return (
@@ -10,9 +11,15 @@ export default function TaskList({ tasks, selectedDay }) {
 				{tasksForSelectedDay.map((task, index) => (
 					<li
 						key={index}
-						className="my-2 p-2 border border-gray-300 rounded-xl"
+						className="flex justify-between items-center my-2 p-2 border border-gray-300 rounded-xl"
 					>
-						{task}
+						<span>{task}</span>
+						<RemoveTask
+							tasks={tasks}
+							setTasks={setTasks}
+							selectedDay={selectedDay}
+							taskIndex={index}
+						/>
 					</li>
 				))}
 			</ul>
