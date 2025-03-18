@@ -16,6 +16,44 @@ export default function TodoList() {
 	const [newTask, setNewTask] = useState("");
 	const [formattedDate, setFormattedDate] = useState("");
 
+	// Carica le task da localStorage all'avvio (solo lato client)
+	useEffect(() => {
+		if (typeof window !== "undefined") {
+			try {
+				const savedTasks = localStorage.getItem("tasks");
+				if (savedTasks) {
+					const parsedTasks = JSON.parse(savedTasks);
+					if (typeof parsedTasks === "object" && parsedTasks !== null) {
+						setTasks(parsedTasks);
+					} else {
+						console.warn(
+							"Dati salvati non validi, reimposto tasks come oggetto vuoto."
+						);
+						setTasks({});
+						localStorage.removeItem("tasks"); // Rimuovi dati corrotti
+					}
+				} else {
+					console.log("Nessun dato trovato in localStorage.");
+				}
+			} catch (error) {
+				console.error("Errore nel parsing delle task salvate:", error);
+				setTasks({});
+			}
+		}
+	}, []);
+
+	// Salva le task in localStorage ogni volta che cambiano (solo lato client)
+	useEffect(() => {
+		if (typeof window !== "undefined") {
+			try {
+				localStorage.setItem("tasks", JSON.stringify(tasks));
+				console.log("Tasks salvati correttamente:", tasks);
+			} catch (error) {
+				console.error("Errore nel salvataggio delle task:", error);
+			}
+		}
+	}, [tasks]);
+
 	const handleDateChange = (date) => {
 		setStartDate(date);
 		setSelectedDay(date.toLocaleDateString("it-IT"));
@@ -34,11 +72,13 @@ export default function TodoList() {
 	};
 
 	useEffect(() => {
+		// Assicurati che il formato della data sia coerente
 		const dateKey = startDate.toLocaleDateString("it-IT");
 		setSelectedDay(dateKey);
 	}, [startDate]);
 
 	useEffect(() => {
+		// Formatta la data per l'intestazione
 		const date = new Date();
 		const month = date.toLocaleString("it-IT", { month: "long" });
 		const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1);
