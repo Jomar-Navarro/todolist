@@ -15,13 +15,11 @@ export default function RemoveTask({
 			return;
 		}
 
-		// Rimuovi la task dall'elenco
 		const updatedTasks = { ...tasks };
 		updatedTasks[selectedDay] = updatedTasks[selectedDay].filter(
 			(_, index) => index !== taskIndex
 		);
 
-		// Se non ci sono più task per il giorno selezionato, rimuovi la chiave
 		if (updatedTasks[selectedDay].length === 0) {
 			delete updatedTasks[selectedDay];
 		}
