@@ -7,6 +7,11 @@ export default function RemoveTask({
 	taskIndex,
 }) {
 	const handleRemoveTask = () => {
+		if (typeof setTasks !== "function") {
+			console.error("setTasks is not a function");
+			return;
+		}
+
 		// Rimuovi la task dall'elenco
 		const updatedTasks = { ...tasks };
 		updatedTasks[selectedDay] = updatedTasks[selectedDay].filter(

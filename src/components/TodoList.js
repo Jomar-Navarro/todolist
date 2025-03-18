@@ -64,7 +64,7 @@ export default function TodoList() {
 				setSelectedDay={setSelectedDay}
 				startDate={startDate}
 			/>
-			<TaskList tasks={tasks} selectedDay={selectedDay} />
+			<TaskList tasks={tasks} setTasks={setTasks} selectedDay={selectedDay} />
 		</div>
 	);
 }
